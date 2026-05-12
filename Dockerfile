@@ -1,5 +1,5 @@
 # Usamos una imagen de Java 23 para correr la app
-FROM container-registry.oracle.com/java/openjdk:23-slim
+FROM eclipse-temurin:23-jre-alpine
 
 # Copiamos el archivo .jar que generó Maven en el paso anterior
 # Nota: Asegúrate de que el nombre coincida con lo que genera tu pom.xml
