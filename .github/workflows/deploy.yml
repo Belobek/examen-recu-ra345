@@ -19,13 +19,13 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: '23'
-          distribution: 'temurin'
+          distribution: 'oracle'
           cache: maven
 
       - name: Build with Maven
         run: mvn clean package -DskipTests
 
-     - name: Login to GitHub Container Registry
+      - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -34,7 +34,6 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          # Esto convierte tu nombre de usuario a minúsculas para que Docker no se queje
           REPO_LOWER=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
           docker build . -t ghcr.io/$REPO_LOWER:latest
           docker push ghcr.io/$REPO_LOWER:latest
